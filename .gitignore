@@ -1,3 +1,10 @@
+#MacOS
+
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+
 #Latex
 
 ## Core latex/pdflatex auxiliary files:
