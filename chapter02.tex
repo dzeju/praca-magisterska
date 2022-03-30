@@ -1,2 +1,53 @@
-\chapter{OPC UA}
-\section{Introduction}
+\chapter{Background}
+\section{OPC UA}
+\subsection{Introduction}
+In a proprietary systems, connected devices may use different communication protocols. Software used to inspect and operate this system must be aware of all these protocols. 
+This requires additional costs and time spent on creating and maintaining such system. The complexity can be reduced by using the OPC UA standard for communication.
+
+\subsection{OPC}
+OPC is a data exchange standard for communication between multiple data sources. These sources may include factory devices, laboratory equipment, databases, test system fixtures. Set of standard interfaces were defined by OPC Foundation to allow access to any device compatible with OPC. 
+The first protocol is reffered as OPC Classic and it used Microsoft's COM/DCOM technology, which provided standard specifications for OPC Data Access (DA), OPC Historical Data Access (HDA) and OPC Alarms and Events (A\&E). 
+COM is providing a communication interface layer, allowing both local and remote procedure calls between processes. Distributed COM (DCOM) is an extension of COM that supports communication among objects computers in the network.
+
+  {  
+    \color{red}
+    OPC Implementation?\\
+    
+    sources: \\
+    https://www.codeproject.com/Articles/12441/OPC-Technology\\
+    https://www.ni.com/pl-pl/innovations/white-papers/08/introduction-to-opc.html\\
+    https://opcfoundation.org/about/what-is-opc/\\
+    https://www.ni.com/pl-pl/innovations/white-papers/12/why-opc-ua-matters.html\\
+  }
+\subsection{OPC UA}
+In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into single entry point with DA, A\&E with history of both.
+
+  {
+    \color{red}
+    How can it be used, where it's used?
+  }
+
+\section{Abstraction layers}
+\subsection{Introduction}
+Systems created currently are constructed using numerous abstraction layers. Each layer is defining an inteface that hides details of implementation for its functionality. Programs that are built on top of each layer can be used and understood using only its inteface, so it's not necessary to know the layer implementation.
+\subsection{Specification}
+Important aspect of an abstraction layer is its specification. A specification should capture the functionality of the implementation as well as the assuptions about other layer context. However, abstraction layers are not commonly specified and verified.
+\subsection{Issues}
+{
+  \color{red}
+  Write something about issues when creating abstraction layers\\
+  
+  sources: \\
+  Deep Specifications and Certified Abstraction Layers \\
+  http://flint.cs.yale.edu/flint/publications/dscal.pdf\\
+  
+  Separation Logic: A Logic for Shared Mutable Data Structures \\
+  https://sci-hub.se/10.1109/LICS.2002.1029817\\
+  https://ieeexplore.ieee.org/document/1029817\\
+  
+  Theories of Programming Languages\\
+  John C. Reynolds\\
+  
+  Clean code\\
+  str 36, 93, 290\\
+}
