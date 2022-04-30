@@ -2,29 +2,38 @@
 \section{OPC UA}
 \subsection{Introduction}
 In a proprietary systems, connected devices may use different communication protocols. Software used to inspect and operate this system must be aware of all these protocols. 
-This requires additional costs and time spent on creating and maintaining such system. The complexity can be reduced by using the OPC UA standard for communication.
+This requires additional costs and time spent on creating and maintaining such system. The complexity can be reduced by using the OPC UA standard for communication \cite{CPOpcTech}.
 
-\subsection{OPC}
-OPC is a data exchange standard for communication between multiple data sources. These sources may include factory devices, laboratory equipment, databases, test system fixtures. Set of standard interfaces were defined by OPC Foundation to allow access to any device compatible with OPC. 
-The first protocol is reffered as OPC Classic and it used Microsoft's COM/DCOM technology, which provided standard specifications for OPC Data Access (DA), OPC Historical Data Access (HDA) and OPC Alarms and Events (A\&E). 
-COM is providing a communication interface layer, allowing both local and remote procedure calls between processes. Distributed COM (DCOM) is an extension of COM that supports communication among objects computers in the network.
+\subsection{Legacy OPC}
+OPC is a data exchange standard for communication between multiple data sources. These sources may include factory devices, laboratory equipment, databases, test system fixtures. Set of standard interfaces were defined by OPC Foundation to allow access to any device compatible with OPC \cite{whatopc}.
 
-  {  
-    \color{red}
-    OPC Implementation?\\
-    
-    sources: \\
-    https://www.codeproject.com/Articles/12441/OPC-Technology\\
-    https://www.ni.com/pl-pl/innovations/white-papers/08/introduction-to-opc.html\\
-    https://opcfoundation.org/about/what-is-opc/\\
-    https://www.ni.com/pl-pl/innovations/white-papers/12/why-opc-ua-matters.html\\
-  }
+The first protocol is reffered as OPC Classic and it used Microsoft's COM(Component Object Model)/DCOM(Distributed Component Object Model) technology. 
+COM/DCOM enabled communication between processes in multiple languages for Windows operating system. 
+COM is an interface standard designed for software components and it allows systems to be built from different software vendors, that are designed to use this interface
+COM is providing a communication interface layer, allowing both local and remote procedure calls between processes. 
+Distributed COM (DCOM) is an extension of COM designed for distributed applications. DCOM allows components to communicate across the network.\cite{COMDCOM, intrOPC}.
+
+The OPC Classic specifications provided definitions for accessing data, alarms, events and historical data\cite{OPCCLas}:
+\begin{itemize}
+  \item OPC Data Access (DA) - exchange of data which includes values, time and quality information in real time,
+  \item OPC Historical Data Access (HDA) - reading, updating, and subscribing to historical data and events,
+  \item and OPC Alarms and Events (A\&E) - receiving alarms and responding to them, reveiving events.
+\end{itemize}
+
+Because of its reliance on Microsoft Windows platform, OPC Classic has some limitations like security issues or dependency on Windows. \cite{whyOPC}
+
+{  
+  \color{red}
+  OPC Implementation? - jest to calkiem fajnie opisane w \cite{intrOPC}, ale nie wiem czy dodaæ bo mozliwe ze by³by to zbyt duzy offtop, bo uzywam opc ua.
+}
 \subsection{OPC UA}
 In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into single entry point with DA, A\&E with history of both.
 
   {
     \color{red}
     How can it be used, where it's used?
+    
+    https://www.ni.com/pl-pl/innovations/white-papers/12/why-opc-ua-matters.html\\
   }
 
 \section{Abstraction layers}
