@@ -27,8 +27,26 @@ Because of its reliance on Microsoft Windows platform, OPC Classic has some limi
   OPC Implementation? - jest to calkiem fajnie opisane w \cite{intrOPC}, ale nie wiem czy dodaæ bo mozliwe ze by³by to zbyt duzy offtop, bo uzywam opc ua.
 }
 \subsection{OPC UA}
-In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into single entry point with DA, A\&E with history of both.
+In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into single entry point with DA, A\&E with HDA of both.
 
+It is also based on a cross-platform Service-Oriented Architecture (SOA). SOA is an improvement on the security and functionality that was in OPC Classic with Microsofts COM/DCOM technology. 
+
+OPC UA supports two protocols:
+\begin{itemize}
+  \item binary protocol - requires minimal resources, easy passing through firewall
+  \item Simple Object Access Protocol (SOAP) - uses HTTP/HTTPS ports
+\end{itemize}
+
+Because of benefits of this protocol many industrial applications adopted OPC UA.
+
+  % TODO Cross-Platform Capabilities
+  % TODO Expanded security?
+  % TODO IT Integration
+  % TODO Compatibility
+  % TODO applications
+  % TODO client
+  % TODO server
+  
   {
     \color{red}
     How can it be used, where it's used?
