@@ -29,30 +29,49 @@ Because of its reliance on Microsoft Windows platform, OPC Classic has some limi
 \subsection{OPC UA}
 In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into single entry point with DA, A\&E with HDA of both.
 
-It is also based on a cross-platform Service-Oriented Architecture (SOA). SOA is an improvement on the security and functionality that was in OPC Classic with Microsofts COM/DCOM technology. 
+\subsubsection{Communication}
+OPC UA is based on a cross-platform Service-Oriented Architecture (SOA). SOA is an improvement on the security and functionality that was in OPC Classic with Microsofts COM/DCOM technology.
 
 OPC UA supports two protocols:
 \begin{itemize}
-  \item binary protocol - requires minimal resources, easy passing through firewall
+  \item Binary protocol - requires minimal resources, easy passing through firewall
   \item Simple Object Access Protocol (SOAP) - uses HTTP/HTTPS ports
 \end{itemize}
 
-Because of benefits of this protocol many industrial applications adopted OPC UA.
+By using SOA and web services OPC UA became independent from Windows operationg system. It means devices no longer had to be running Windows and OPC UA could be deployed on other operating systems, like Linux or Mac.
 
-  % TODO Cross-Platform Capabilities
-  % TODO Expanded security?
-  % TODO IT Integration
-  % TODO Compatibility
-  % TODO applications
-  % TODO client
-  % TODO server
+\subsubsection{Security}
+Security in OPC UA greatly improved by switching from COM/DCOM. OPC Classic used security features from  DCOM, which were complex and difficult. This caused common oversights in that department and disabled the security options altogether.
+
+To secure data, OPC UA uses common web technologies as a security basis, which includes authentication and encryption features.
+
+\subsubsection{}
+\subsubsection{}
+\subsubsection{Information Modeling}
+\subsubsection{}
+\subsubsection{}
+\subsubsection{}
+%- TODO Cross-Platform Capabilities
+% TODO Expanded security?
+% TODO IT Integration
+% TODO Compatibility
+% TODO applications
+%TODO architecture
+% TODO client
+% TODO server
+%TODO specification
+
+
+
+{
+\color{red}
+OPC Unified Architecture
+by Mahnke, Wolfgang, Leitner, Stefan-Helmut, Damm, Matthias
+14.2.2 Is Information Modeling a Pain?
+\url{ https://www.itk.ntnu.no/fag/TTK4545/TTK2/PDF/Extract%20from%20Book%20OPC%20Unified%20Architecture.pdf}
   
-  {
-    \color{red}
-    How can it be used, where it's used?
-    
-    https://www.ni.com/pl-pl/innovations/white-papers/12/why-opc-ua-matters.html\\
-  }
+  https://www.ni.com/pl-pl/innovations/white-papers/12/why-opc-ua-matters.html\\
+}
 
 \section{Abstraction layers}
 \subsection{Introduction}
