@@ -89,23 +89,31 @@ The profiles in part 7 are used to define subsets of OPC UA features to implemen
 
 \subsubsection{Access type specification parts}
 
-Part 8 includes the Data Access information model, wchich defines representation and usage of automation data and specific characteristics.
-Process alarm and condition monitoring are specified in Alarms and Conditions information model defined in part 9.
-Part 10 contains the Programs information model that define a base state machine. 
-The Historical Access information model describes the usage of history access Services and presentation of information in part 11.
-In part 13 the Aggregates specifies computation of aggregated values from data samples.
+Part 8 includes the Data Access information model, which defines the representation and usage of automation data and specific characteristics.
+Process alarm and condition monitoring are specified in the Alarms and Conditions information model defined in part 9.
+Part 10 contains the Programs information model that defines a base state machine. 
+The Historical Access information model describes the usage of history access Services and the presentation of information in part 11.
+In part 13 the Aggregates specifies the computation of aggregated values from data samples.
 
 \subsubsection{Discovery part}
 
-The Discovery specifies how to discover servers in the network and how to get necessary information needed for connection from a client in part 12.
+The Discovery specifies how to discover servers in the network and how to get the necessary information needed for connection from a client in part 12.\cite{Damm2009OPCUA}
 
 
+\subsection{OPC UA software layers}
+OPC UA uses the client-server concept for communication. The UA server application exposes its information to other applications and the UA client is an application that consumes that information. An application might serve both as a UA server and client.
 
+OPC UA is most often created from three software layers, as shown in \ref{fig:opc-ua-layers}. Here there is presented that the whole software stack can be implemented in Java, C/C++, or in .NET, but it is also possible to implement it in javascript, as in this thesis.
 
-\cite{Damm2009OPCUA}
-\subsection{OPC UA Software Layers}
-\subsubsection{OPC UA Client}
-\subsubsection{OPC UA Server}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures02/opc-ua-layers.png}
+  \caption{OPC UA software layers \cite{Damm2009OPCUA}}
+  \label{fig:opc-ua-layers}
+\end{figure}
+
+OPC UA Application is a system that exposes or consumes information through OPC UA. OPC UA client or server SDK contains OPC UA functionalities, and UA Stacks implement communication channels. \cite{Damm2009OPCUA}
+
 \subsubsection{Information Modeling}
 \subsubsection{}
 \subsubsection{}
