@@ -97,8 +97,27 @@ In part 13 the Aggregates specifies the computation of aggregated values from da
 
 \subsubsection{Discovery part}
 
-The Discovery specifies how to discover servers in the network and how to get the necessary information needed for connection from a client in part 12.\cite{Damm2009OPCUA}
+The Discovery specifies how to discover servers in the network and how to get the necessary information needed for connection from a client in part 12 \cite{Damm2009OPCUA}.
 
+\subsubsection{Information modeling}
+The meta model of OPC UA is defined in part 3 of the specification. The base component of the meta model is nodes. For specializing the base node class, several node classes are defined \ref*{fig:opc-ua-base}, like variables, objects, etc. Nodes have a set of attributes for each, depending on the class. Some attributes are required, while others are optional. Each node class, for example, requires a "NodeId" that uniquely identifies the node, but the "Description" is optional \cite{Leitner2006OPCU}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.6\linewidth]{figures02/opc-ua-base.png}
+  \caption{OPC UA meta model \cite{Leitner2006OPCU}}
+  \label{fig:opc-ua-base}
+\end{figure}
+
+The base principles of data modeling in OPC UA are \cite{Damm2009OPCUA, PAUKER2016321}:
+\begin{itemize}
+  \item Object-oriented techniques with type hierarchies and inheritance,
+  \item Type information is available and can be accessed similarly to an instance,
+  \item A fully mesh network of nodes allows information to be connected in a variety of ways,
+  \item Type hierarchies, as well as reference types between nodes, are extensible,
+  \item No modeling limits to allow for proper information model design,
+  \item OPC UA information modeling is always done on the server.
+\end{itemize}
 
 \subsection{OPC UA software layers}
 OPC UA uses the client-server concept for communication. The UA server application exposes its information to other applications and the UA client is an application that consumes that information. An application might serve both as a UA server and client.
@@ -114,7 +133,10 @@ OPC UA is most often created from three software layers, as shown in \ref{fig:op
 
 OPC UA Application is a system that exposes or consumes information through OPC UA. OPC UA client or server SDK contains OPC UA functionalities, and UA Stacks implement communication channels. \cite{Damm2009OPCUA}
 
-\subsubsection{Information Modeling}
+
+
+
+
 \subsubsection{}
 \subsubsection{}
 \subsubsection{}
@@ -164,3 +186,31 @@ Important aspect of an abstraction layer is its specification. A specification s
   Clean code\\
   str 36, 93, 290\\
 }
+
+\section{C4 model}
+The C4 model is a graphical notation technique for representing software system architecture\cite{Richards2020FundamentalsOS, EnriquezReneSalazarAlbertoArchitecture2018}. 
+It is built on a structural decomposition of a system into containers and components, and it depends on existing modeling approaches such as the Unified Modeling Language (UML) or Entity Relation Diagrams (ERD) for a more precise decomposition of the architectural building blocks. 
+It also was developed to address UML's shortcomings and improve its approach \cite{Richards2020FundamentalsOS}.
+
+\subsection{Abstractions}
+The C4 model is an "abstraction-first" approach to diagramming software architecture, based upon abstractions that illustrate how software architects and developers think about and build software \cite{C4Model}.
+
+Model created using C4 is composed of a set of hierarchical diagrams, that can be used to describe software at different levels of detail \cite{C4ModelSimon, C4Model}:
+\begin{itemize}
+  \item System Context diagram - shows the overall software information and how the software system in scope would fit into the world around it,
+  \item Container diagram - more detailed diagram of the software system, showing containers that together create that software system. Containers might be applications, data stores, microservices, etc. The key part of this level is technology decisions on what would be used to develop each part.
+  \item Component diagram - a diagram showing details and components of the selected container. Components should map to real abstractions, e.g. a grouping of code in the codebase.
+  \item Code diagram - diagram of the selected component, showing how this component is implemented. It can be created using, for example, a UML class diagram. This level is not often used by software architects and developers because it is too much detailed to be practical.
+\end{itemize}
+
+An overview of these levels is illustrated in \ref{fig:c4-overview}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1\linewidth]{figures02/c4-overview.png}
+  \caption{C4 model \cite{C4Model}}
+  \label{fig:c4-overview}
+\end{figure}
+
+\subsection{Notation}
+There is no particular nota
