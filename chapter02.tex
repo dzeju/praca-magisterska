@@ -1,4 +1,7 @@
 \chapter{Background}
+
+\section{State of Art}
+
 \section{OPC UA}
 \subsection{Introduction}
 In a proprietary system, connected devices may use different communication protocols. Software used to inspect and operate this system must be aware of all these protocols. 
@@ -134,12 +137,50 @@ OPC UA is most often created from three software layers, as shown in \ref{fig:op
 OPC UA Application is a system that exposes or consumes information through OPC UA. OPC UA client or server SDK contains OPC UA functionalities, and UA Stacks implement communication channels. \cite{Damm2009OPCUA}
 
 
+\section{OPC UA comparison to other communication protocols}
+\subsection{MQTT}
+MQTT (Message Queue Telemetry Transport) is a lightweight message protocol based on a subscription-publishing model in which publishers send messages to a server, which then forwards them to subscribers, avoiding point-to-point connections between subscribers and publishers. This eliminates the need for subscribers to know who provides the information to which they have subscribed. MQTT was created with low-resource devices, low-bandwidth networks, and high latency in mind \cite{MQTTvsOPC-UA}.
+
+\subsection{MTConnect}
+The MTConnect standard (ANSI/MTC1.4-2018) provides a semantic vocabulary for manufacturing equipment that allows it to provide structured, contextualized data in any format. Developers and integrators can concentrate on interesting, productive manufacturing applications rather than translation with homogeneous data. Machine tools, industrial equipment, sensors and sensor controllers, and other factory hardware are all data sources \cite{MTConnect}.
+% TODO zmieniæ trochê imo
+
+\subsection{Protocol elements}
+MTConnect - client-agent, RESTful interface based on HTTP v1.0
+
+OPC - client-server, TCP/IP, SOAP/HTTP and HTTPS 
+
+MQTT - client-server, TCP connection or an encrypted TLS connection
+\subsection{Data models}
+MTConnect - very detailed data model for the field of machine tools. The structure of the model is fully described in XML schemas.
+
+OPC - nodes, which comprise variables, methods or references to other objects
+
+MQTT - JSON, XML, encrypted binary or Base64. This gives a lot of flexibility 
+\subsection{Data access}
+For detecting MTConnect-enabled devices through a client application, the use of a LDAP server (Lightweight Directory Access Protocol) and thus also a standard method is recommended, in which the agents log in all devices connected to them.
+
+OPC UA each server provides a Discovery Endpoint, which can be used by clients without having to completely establish a connection to the server
 
 
 
-\subsubsection{}
-\subsubsection{}
-\subsubsection{}
+
+\subsection{Security}
+In the context of MTConnect the topic of security is addressed with a lower priority.
+
+in OPC UA the security is integral part of the specification and hence also of the communication stacks. The definition is given in Part 2, "Security Model" of the IEC standard. 
+
+mqtt - encrypted TLS connection
+
+  {
+    \color{red}
+    \url{https://www.hivemq.com/iiot-protocols-opc-ua-mqtt-sparkplug-comparison/} <- praktycznie reklama technologii tej firmy\\
+    Comparison MQTT vs OPC-UA - \url{https://www.muutech.com/en/comparison-mqtt-vs-opc-ua/}\\
+    OPC UA versus MTConnect - \url{https://www.researchgate.net/publication/322835359_OPC_UA_versus_MTConnect_-_English_version}\\
+    A Cyber-Physical Machine Tools Platform using OPC UA and MTConnect - \url{https://www.sciencedirect.com/science/article/abs/pii/S0278612518301110}
+    
+  }
+
 %- TODO Cross-Platform Capabilities
 %- TODO Expanded security?
 %? TODO IT Integration
@@ -149,18 +190,6 @@ OPC UA Application is a system that exposes or consumes information through OPC 
 % TODO client
 % TODO server
 %TODO specification
-
-
-
-{
-\color{red}
-OPC Unified Architecture
-by Mahnke, Wolfgang, Leitner, Stefan-Helmut, Damm, Matthias
-14.2.2 Is Information Modeling a Pain?
-\url{ https://www.itk.ntnu.no/fag/TTK4545/TTK2/PDF/Extract%20from%20Book%20OPC%20Unified%20Architecture.pdf}
-  
-  https://www.ni.com/pl-pl/innovations/white-papers/12/why-opc-ua-matters.html\\
-}
 
 \section{Abstraction layers}
 \subsection{Introduction}
@@ -214,3 +243,4 @@ An overview of these levels is illustrated in \ref{fig:c4-overview}
 
 \subsection{Notation}
 There is no particular nota
+
