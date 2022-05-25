@@ -701,15 +701,15 @@ Listing \thelstlisting: #1\hfill%\hfill%
 \setlength{\tmpfboxrule}{\fboxrule}
 \setlength{\fboxsep}{2mm}
 \setlength{\fboxrule}{0mm} 
-%\setlength{\fboxrule}{0.1mm} %% uncomment if you with to see the frame
+%\setlength{\fboxrule}{0.1mm} %% INFO: Jeœli chcemy zobaczyæ ramkê, wystarczy odmarkowaæ tê linijkê
 \setlength{\unitlength}{1mm}
 \begin{picture}(0,0)
-\put(44,-129){\fbox{
+\put(26,-124){\fbox{
 \parbox[c][71mm][c]{104mm}{\centering%\lineskip=34pt 
-\fontsize{16pt}{18pt}\selectfont \@titleEN\\[5mm]
-\fontsize{16pt}{18pt}\selectfont \@title\\[15mm]
-\fontsize{16pt}{18pt}\selectfont AUTHOR:\\[2mm]
-\fontsize{14pt}{16pt}\selectfont \@author}
+{\fontsize{18pt}{20pt}\bfseries\selectfont \@title}\\[5mm]
+{\fontsize{18pt}{20pt}\bfseries\selectfont \@titleEN}\\[10mm]
+%\fontsize{16pt}{18pt}\selectfont Author:\\[2mm]
+{\fontsize{16pt}{18pt}\selectfont \@author}}
 }
 }
 \end{picture}
@@ -717,34 +717,33 @@ Listing \thelstlisting: #1\hfill%\hfill%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The rest of the page with the name of the university, faculty, major, specialty
 %% promoter, job grade, city and year 
-	{\centering%\vspace{-1cm}
-		{\fontsize{22pt}{24pt}\selectfont \@uczelnia}\\[0.4cm]
-		{\fontsize{22pt}{24pt}\selectfont \@wydzial}\\[0.5cm]
-		  \hrule %\vspace*{0.7cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	{\vskip 9pt\centering
+		{\fontsize{20pt}{22pt}\bfseries\selectfont \@uczelnia}\\[5pt]
+		{\fontsize{16pt}{18pt}\bfseries\selectfont \@wydzial}\\[1pt]
+		  \hrule
 	}
-{\flushleft\fontsize{14pt}{16pt}\selectfont%
+{\vskip 24pt\raggedright\fontsize{14pt}{16pt}\selectfont%
 \begin{tabular}{ll}
-FIELD: & \@kierunek\\
-SPECIALIZATION: & \@specjalnosc\\
+Field: & {\bfseries \@kierunek}\\
+Specialisation: & {\bfseries \@specjalnosc}\\
 \end{tabular}\\[1.3cm]
 }
-{\centering
-{\fontsize{32pt}{36pt}\selectfont ENGINEERING}\\[0.5cm]
-{\fontsize{32pt}{36pt}\selectfont THESIS}\\[2.5cm]
+{\vskip 29pt\centering{\fontsize{24pt}{26pt}\selectfont%
+{\fontsize{26pt}{28pt}\selectfont M}ASTER\\[7pt]
+{\fontsize{26pt}{28pt}\selectfont T}HESIS}\\[2.5cm]
 }
 \vfill
-\begin{tabularx}{\linewidth}{p{6cm}l}
-		&{\fontsize{16pt}{18pt}\selectfont SUPERVISOR:}\\[2mm] 
-		&{\fontsize{14pt}{16pt}\selectfont \@promotor}\\[10mm]
-%		&{\fontsize{16pt}{18pt}\selectfont GRADE:}\\[20mm]
-% The GRADE part can be removed, if the work is to be delivered without the supervisor's signature (in the pandemic era)
-% So instead of the row defined above you can enter:
-   &{\fontsize{16pt}{18pt}\selectfont }\\[20mm]
-	\end{tabularx}
-\vspace{2cm}
+{\centering
+		{\fontsize{14pt}{16pt}\selectfont Supervisor}\\[2mm] %INFO: tutaj jest miejsce na nazwisko promotora pracy
+		{\fontsize{14pt}{16pt}\bfseries\selectfont \@promotor}\\[10mm]
+%		&{\fontsize{16pt}{18pt}\selectfont OCENA PRACY:}\\[20mm]
+% Tekst 'OCENA PRACY:' mo¿na usun¹æ, jeœli praca ma byæ dostarczona bez podpisu promotora (w dobie pandemii)
+}
+\vspace{6cm}
 \hrule\vspace*{0.3cm}
 {\centering
-{\fontsize{16pt}{18pt}\selectfont \@date}\\[0cm]
+{\fontsize{14pt}{16pt}\selectfont \@date}\\[0cm]
 }
 %\ungaramond
 \normalfont
@@ -762,16 +761,16 @@ SPECIALIZATION: & \@specjalnosc\\
 %%  Thesis metadata 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Modelowanie i implementacja ró¿nych warstw abstrakcji w systemach budowanych z wykorzystaniem standardu OPC UA}
-\titleShort{Modeling and implementation of various abstraction layers in systems built using the OPC UA standard}
+\titleShort{Modeling and implementation of various abstraction layers in systems built using ...}
 \titleEN{Modeling and implementation of various abstraction layers in systems built using the OPC UA standard}
 \author{Jakub £oboda}
-\uczelnia{WROC£AW UNIVERSITY OF SCIENCE AND TECHNOLOGY}
-\wydzial{FACULTY OF ELECTRONICS}
-\kierunek{COMPUTER ENGINEERING}
-\specjalnosc{INTERNET ENGINEERING}
-\promotor{dr in¿., Tomasz Kubik,\newline
-Katedra Informatyki Technicznej}
+\uczelnia{Wroc³aw University of Science and Technology}
+\wydzial{Faculty of Information and Communication Technology}
+\kierunek{Computer Engineering}
+\specjalnosc{Internet Engineering}
+\promotor{dr in¿.\ Tomasz Kubik, K30W04ND03}
 \date{WROC£AW, 2022}
+
 
 % Setting the space above nonnumbered chapters and list: ToC, LoT, LoF, Index
 % Spis treœci, Spis tabel, Spis rysunków, Indeks rzeczowy
