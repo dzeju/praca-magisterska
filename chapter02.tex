@@ -14,20 +14,20 @@ The first protocol is referred to as OPC Classic and it used Microsoft's COM(Com
 COM/DCOM enabled communication between processes in multiple languages for Windows operating system. 
 COM is an interface standard designed for software components and it allows systems to be built from different software vendors, that are designed to use this interface
 COM is providing a communication interface layer, allowing both local and remote procedure calls between processes. 
-Distributed COM (DCOM) is an extension of COM designed for distributed applications. DCOM allows components to communicate across the network.\cite{COMDCOM, intrOPC}.
+Distributed COM (DCOM) is an extension of COM designed for distributed applications. DCOM allows components to communicate across the network \cite{COMDCOM, intrOPC}.
 
-The OPC Classic specifications provided definitions for accessing data, alarms, events, and historical data\cite{OPCCLas}:
+The OPC Classic specifications provided definitions for accessing data, alarms, events, and historical data \cite{OPCCLas}:
 \begin{itemize}
   \item OPC Data Access (DA) - exchange of data which includes values, time and quality information in real time,
   \item OPC Historical Data Access (HDA) - reading, updating, and subscribing to historical data and events,
   \item and OPC Alarms and Events (A\&E) - receiving alarms and responding to them, reveiving events.
 \end{itemize}
 
-Because it relies on the Microsoft Windows platform, OPC Classic has some limitations like security issues or dependency on Windows. \cite{whyOPC}
+Because it relies on the Microsoft Windows platform, OPC Classic has some limitations like security issues or dependency on Windows \cite{whyOPC}.
 
 {  
-  \color{red}
-  OPC Implementation? - jest to calkiem fajnie opisane w \cite{intrOPC}, ale nie wiem czy dodaæ bo mozliwe ze by³by to zbyt duzy offtop, bo uzywam opc ua.
+\color{red}
+OPC Implementation? - jest to calkiem fajnie opisane w \cite{intrOPC}, ale nie wiem czy dodaæ bo mozliwe ze by³by to zbyt duzy offtop, bo uzywam opc ua.
 }
 \subsection{OPC UA}
 In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into a single entry point with DA, A\&E with HDA of both.
@@ -41,26 +41,21 @@ OPC UA supports two protocols:
   \item Simple Object Access Protocol (SOAP) - uses HTTP/HTTPS ports
 \end{itemize}
 
-By using SOA and web services OPC UA became independent from Windows operating system. It means devices no longer had to be running Windows and OPC UA could be deployed on other operating systems, like Linux or Mac.\cite{whyOPC}
+By using SOA and web services OPC UA became independent from Windows operating system. It means devices no longer had to be running Windows and OPC UA could be deployed on other operating systems, like Linux or Mac \cite{whyOPC}.
 
 \subsubsection{Security imporovements}
 Security in OPC UA was greatly improved by switching from COM/DCOM. OPC Classic used security features from DCOM, which were complex and difficult. This caused common oversights in that department and disabled the security options altogether.
 
 To secure data, OPC UA uses common web technologies as a security basis, which includes authentication and encryption features. Clients and servers use certificates to connect. OPC UA supports PKCS12 Public-Key Cryptography Standards to supply the X.509 private keys and certificate files containing public keys. 
-There are three possible messaging modes between the server and client:
-\begin{itemize}
-  \item None
-  \item Sign
-  \item Sign and Encrypt
-\end{itemize}
-User also has the ability to enable Basic256 or Basic128Rsa15 security policy, which are bases for signing and encrypting the data.\cite{whyOPC}
+There are three possible messaging modes between the server and client, wich are: None, Sign and Sign and Encrypt.
+User also has the ability to enable Basic256 or Basic128Rsa15 security policy, which are bases for signing and encrypting the data \cite{whyOPC}.
 
 \subsection{OPC UA Specification}
 Specifications of OPC UA are split into parts, also known as IEC 62541 standards. The specifications parts are divided between core specifications, which establish the base for OPC UA, and access type specific elements, which specify information models. An overview showing these specifications is presented in the figure \ref{fig:opc-ua-spec}.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.7\linewidth]{figures02/opc-ua-specifications.png}
+  \includegraphics[width=0.7\linewidth]{figures02/OPC-ua-specification.pdf}
   \caption{OPC UA Specifications \cite{Damm2009OPCUA}}
   \label{fig:opc-ua-spec}
 \end{figure}
@@ -107,7 +102,7 @@ The meta model of OPC UA is defined in part 3 of the specification. The base com
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.6\linewidth]{figures02/opc-ua-base.png}
+  \includegraphics[width=0.8\linewidth]{figures02/opc-meta-model.pdf}
   \caption{OPC UA meta model \cite{Leitner2006OPCU}}
   \label{fig:opc-ua-base}
 \end{figure}
@@ -125,16 +120,16 @@ The base principles of data modeling in OPC UA are \cite{Damm2009OPCUA, PAUKER20
 \subsection{OPC UA software layers}
 OPC UA uses the client-server concept for communication. The UA server application exposes its information to other applications and the UA client is an application that consumes that information. An application might serve both as a UA server and client.
 
-OPC UA is most often created from three software layers, as shown in \ref{fig:opc-ua-layers}. Here there is presented that the whole software stack can be implemented in Java, C/C++, or in .NET, but it is also possible to implement it in javascript, as in this thesis.
+OPC UA is most often created from three software layers, as shown in \ref{fig:opc-ua-layers}. There is presented that the whole software stack can be implemented in Java, C/C++, or .NET, but it is also possible to implement it in javascript, as in this thesis.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.7\linewidth]{figures02/opc-ua-layers.png}
+  \includegraphics[width=0.7\linewidth]{figures02/opc-software-layers.pdf}
   \caption{OPC UA software layers \cite{Damm2009OPCUA}}
   \label{fig:opc-ua-layers}
 \end{figure}
 
-OPC UA Application is a system that exposes or consumes information through OPC UA. OPC UA client or server SDK contains OPC UA functionalities, and UA Stacks implement communication channels. \cite{Damm2009OPCUA}
+OPC UA Application is a system that exposes or consumes information through OPC UA. OPC UA client or server SDK contains OPC UA functionalities, and UA Stacks implement communication channels \cite{Damm2009OPCUA}.
 
 
 \section{OPC UA comparison to other communication protocols}
@@ -151,25 +146,41 @@ MTConnect - client-agent, RESTful interface based on HTTP v1.0
 OPC - client-server, TCP/IP, SOAP/HTTP and HTTPS 
 
 MQTT - client-server, TCP connection or an encrypted TLS connection
-\subsection{Data models}
-MTConnect - very detailed data model for the field of machine tools. The structure of the model is fully described in XML schemas.
 
+MTConnect uses client-agent concept for communication. Path of communication of components and devices with agent is proprietary. 
+The agent-client interface is specified as a RESTful interface based on HTTP. This type of communication allows it to be stateless. This means that the server does not need to have session managemement, which provides simplicity. However, there is no user authentication during setup. MTConnect have specified only the GET method of HTTP request methods. It is used to get information without any side effects \cite{Michaloski2009QuantifyingTP}, so data transport is made very simple. The application data of the agent are transferred in XML format \cite{MQTTvsOPC-UA}.  
+
+MQTT uses client-server concept for communication. The protocol runs over TCP/IP, or other other network protocols providing ordered, lossless, bi-directional connectivity. MQTT uses publish/subscribe message pattern, which allows for one-to-many message distribution and application decoupling. The protocol supports sending messages with quality of service with three levels:   
+\begin{itemize}
+  \item "At most once" - no quality of service. Message is sent only once, so if client is not available the message will be lost
+  \item "At least once" - message will be resent until it is received at least once. Duplication of messages may occur
+  \item "Exactly once" - message is assured to arrive exactly once \cite{MQTT50, opc-vs-mtconnect}.
+\end{itemize}
+% TODO add topics, broker, etc
+
+% TODO Compared to OPC UA 
+
+\subsection{Data models}
 OPC - nodes, which comprise variables, methods or references to other objects
 
-MQTT - JSON, XML, encrypted binary or Base64. This gives a lot of flexibility 
-\subsection{Data access}
-For detecting MTConnect-enabled devices through a client application, the use of a LDAP server (Lightweight Directory Access Protocol) and thus also a standard method is recommended, in which the agents log in all devices connected to them.
+MTConnect has very detailed data model for field of machine tools. The model's structure is thoroughly specified in XML schemas. It uses a single catalog of terminology and phrases to make it brief and straightforward. The rigidity of this process, however, is a disadvantage. Only a change or extension of the standard will allow the model to be extended or modified \cite{opc-vs-mtconnect}.
+
+MQTT packet structure is consisting of always present fixed header, not always present variable header, and payload \cite{MQTTprot}. There is no data model for payload, therefore messages can be transmitted in any format, including JSON, XML, encrypted binary, and Base64. This provides the protocol a lot of flexibility, but it also means that the client receiving the messages needs to be able to analyze type of load that is incoming \cite{MQTTvsOPC-UA}.
+
+\subsection{Data access and discovery}
 
 OPC UA each server provides a Discovery Endpoint, which can be used by clients without having to completely establish a connection to the server
 
+It is recommended to use LDAP server (Lightweight Directory Access Protocol) and thus a standard method to detect MTConnect-enabled devices. The agents log in all devices connected to them. To read out the structure of the components and data items, MTConnect defines the call type "probe", which allows a kind of browsing of the device representation. Other call types are used to read immediate values, such as events and states, and to read different histories. An agent stores the acquired data in a ring buffer, which may result in data loss due to overwriting. The client-side application is in charge of the timely reading \cite{opc-vs-mtconnect}. 
 
-
+MQTT is designed to be lightweight and energy efficient, so it does not have implemented any mechanism of search of the topic nor the broker where messages are published. Client application has to have knowledge of broker and message topics beforehand. 
 
 \subsection{Security}
-In the context of MTConnect the topic of security is addressed with a lower priority.
-
 in OPC UA the security is integral part of the specification and hence also of the communication stacks. The definition is given in Part 2, "Security Model" of the IEC standard. 
 
+With MTConnect security is treated with lower priority. It is recommended that implementations include encryption of data transport and storage by standard methods such as SSL/TLS for transport and AES of RSA for storing \cite{opc-vs-mtconnect}.
+
+MQTT allows implementers a choice of network, privacy, authentication and authorization technologies. It is on implementer responsibility to include security features as part of the design. In hostile communication environments it is recommended to use methods like TLS and provide mechanisms for authentication of users, authorization of access, integrity and privacy of MQTT Control Packets and application data within \cite{MQTT50}.
 mqtt - encrypted TLS connection
 
   {
@@ -234,6 +245,7 @@ Model created using C4 is composed of a set of hierarchical diagrams, that can b
 
 An overview of these levels is illustrated in \ref{fig:c4-overview}
 
+% TODO powrzucaæ lepiej widoczne zdjêcia
 \begin{figure}[ht]
   \centering
   \includegraphics[width=1\linewidth]{figures02/c4-overview.png}
