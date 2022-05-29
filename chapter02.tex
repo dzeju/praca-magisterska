@@ -43,7 +43,7 @@ OPC UA supports two protocols:
 
 By using SOA and web services OPC UA became independent from Windows operating system. It means devices no longer had to be running Windows and OPC UA could be deployed on other operating systems, like Linux or Mac \cite{whyOPC}.
 
-\subsubsection{Security imporovements}
+\subsubsection{Security imporovements} \label{sec-imporovements}
 Security in OPC UA was greatly improved by switching from COM/DCOM. OPC Classic used security features from DCOM, which were complex and difficult. This caused common oversights in that department and disabled the security options altogether.
 
 To secure data, OPC UA uses common web technologies as a security basis, which includes authentication and encryption features. Clients and servers use certificates to connect. OPC UA supports PKCS12 Public-Key Cryptography Standards to supply the X.509 private keys and certificate files containing public keys. 
@@ -61,7 +61,7 @@ Specifications of OPC UA are split into parts, also known as IEC 62541 standards
 \end{figure}
 
 \subsubsection{Core specification parts}
-The concepts in part 1 provide an overview of OPC UA, and the security requirements and model are described in part 2. 
+The concepts in part 1 provide an overview of OPC UA, and the security requirements and model are described in part 2. Further description of security part is in \ref{security}.
 
 The specifications that are crucial to understanding how to model and access information are parts 3 and part 4. 
 
@@ -95,9 +95,9 @@ In part 13 the Aggregates specifies the computation of aggregated values from da
 
 \subsubsection{Discovery part}
 
-The Discovery specifies how to discover servers in the network and how to get the necessary information needed for connection from a client in part 12 \cite{Damm2009OPCUA}.
+The Discovery specifies how to discover servers in the network and how to get the necessary information needed for connection from a client in part 12 \cite{Damm2009OPCUA}. Additional descriptions are provided in \ref{data-acc}
 
-\subsubsection{Information modeling}
+\subsubsection{Information modeling} \label{inf-modeling}
 The meta model of OPC UA is defined in part 3 of the specification. The base component of the meta model is nodes. For specializing the base node class, several node classes are defined \ref*{fig:opc-ua-base}, like variables, objects, etc. Nodes have a set of attributes for each, depending on the class. Some attributes are required, while others are optional. Each node class, for example, requires a "NodeId" that uniquely identifies the node, but the "Description" is optional \cite{Leitner2006OPCU}.
 
 \begin{figure}[ht]
@@ -141,66 +141,46 @@ The MTConnect standard (ANSI/MTC1.4-2018) provides a semantic vocabulary for man
 % TODO zmieniæ trochê imo
 
 \subsection{Protocol elements}
-MTConnect - client-agent, RESTful interface based on HTTP v1.0
-
-OPC - client-server, TCP/IP, SOAP/HTTP and HTTPS 
-
-MQTT - client-server, TCP connection or an encrypted TLS connection
 
 MTConnect uses client-agent concept for communication. Path of communication of components and devices with agent is proprietary. 
 The agent-client interface is specified as a RESTful interface based on HTTP. This type of communication allows it to be stateless. This means that the server does not need to have session managemement, which provides simplicity. However, there is no user authentication during setup. MTConnect have specified only the GET method of HTTP request methods. It is used to get information without any side effects \cite{Michaloski2009QuantifyingTP}, so data transport is made very simple. The application data of the agent are transferred in XML format \cite{MQTTvsOPC-UA}.  
 
-MQTT uses client-server concept for communication. The protocol runs over TCP/IP, or other other network protocols providing ordered, lossless, bi-directional connectivity. MQTT uses publish/subscribe message pattern, which allows for one-to-many message distribution and application decoupling. The protocol supports sending messages with quality of service with three levels:   
+MQTT uses client-server concept for communication. The protocol runs over TCP/IP, or other other network protocols providing ordered, lossless, bi-directional connectivity. Message payloads can be sent in any format. MQTT uses publish/subscribe message pattern, which allows for one-to-many message distribution and application decoupling. The client can both subscribe to topics and publish messages. 
+The protocol supports sending messages with quality of service with three levels:   
 \begin{itemize}
   \item "At most once" - no quality of service. Message is sent only once, so if client is not available the message will be lost
   \item "At least once" - message will be resent until it is received at least once. Duplication of messages may occur
   \item "Exactly once" - message is assured to arrive exactly once \cite{MQTT50, opc-vs-mtconnect}.
 \end{itemize}
-% TODO add topics, broker, etc
 
-% TODO Compared to OPC UA 
+OPC UA client-server communication runs over TCP/IP, SOAP/HTTP and HTTPS. SOAP is an XML-based protocol that allows for HTTP-based message exchanges that follow the request and response pattern. The OPC UA messages are sent over WS (Web Service) Secure Conversation and SOAP using OPC UA Binary Encoding. Base64 is less effecient compared to binary coding, but it is more efficitent that than XML used by MTConnect. 
+The WS Secure Conversation specification is part of the web service specification series, which provides a collection of specifications for SOAP/WSDL-based services. 
+HTTPS allows OPC UA Binary and XML to be transferred over a secure SSL/TLS connection.
 
 \subsection{Data models}
-OPC - nodes, which comprise variables, methods or references to other objects
 
-MTConnect has very detailed data model for field of machine tools. The model's structure is thoroughly specified in XML schemas. It uses a single catalog of terminology and phrases to make it brief and straightforward. The rigidity of this process, however, is a disadvantage. Only a change or extension of the standard will allow the model to be extended or modified \cite{opc-vs-mtconnect}.
+MTConnect has very detailed data model that is thoroughly specified in XML schemas. It uses a single catalog of terminology and phrases to make it brief and straightforward. The rigidity of this process, however, is a disadvantage. Only a change or extension of the standard will allow the model to be extended or modified \cite{opc-vs-mtconnect}.
 
 MQTT packet structure is consisting of always present fixed header, not always present variable header, and payload \cite{MQTTprot}. There is no data model for payload, therefore messages can be transmitted in any format, including JSON, XML, encrypted binary, and Base64. This provides the protocol a lot of flexibility, but it also means that the client receiving the messages needs to be able to analyze type of load that is incoming \cite{MQTTvsOPC-UA}.
 
-\subsection{Data access and discovery}
+OPC UA uses information model defined in part 3 of it's specification, described in \ref{inf-modeling}. The information model allows changes like adding and deleting nodes during runtime of the server, which is an advantage when compared to MTConnect, but it still is an effort to implement this data model \cite{opc-vs-mtconnect}. MQTT gives a lot more freedom when modeling the data model.
 
-OPC UA each server provides a Discovery Endpoint, which can be used by clients without having to completely establish a connection to the server
+\subsection{Data access and discovery} \label{data-acc}
 
 It is recommended to use LDAP server (Lightweight Directory Access Protocol) and thus a standard method to detect MTConnect-enabled devices. The agents log in all devices connected to them. To read out the structure of the components and data items, MTConnect defines the call type "probe", which allows a kind of browsing of the device representation. Other call types are used to read immediate values, such as events and states, and to read different histories. An agent stores the acquired data in a ring buffer, which may result in data loss due to overwriting. The client-side application is in charge of the timely reading \cite{opc-vs-mtconnect}. 
 
-MQTT is designed to be lightweight and energy efficient, so it does not have implemented any mechanism of search of the topic nor the broker where messages are published. Client application has to have knowledge of broker and message topics beforehand. 
+MQTT is designed to be lightweight and energy efficient, so it does not have implemented any mechanism of search of the topic nor the broker where messages are published. Client application has to have knowledge of broker and message topics beforehand \cite{MQTTvsOPC-UA}. 
 
-\subsection{Security}
-in OPC UA the security is integral part of the specification and hence also of the communication stacks. The definition is given in Part 2, "Security Model" of the IEC standard. 
+OPC UA offers a Discovery Endpoint, which can be used by clients to retrieve the configuration of the server. The LDS (Local Discovery Server) is used when multiple devices are hosting OPC UA servers. These servers register their endponts to the LDS. OPC UA servers on a subnet can be also discovered through multicast DNS. OPC UA defines also a GDS (Global Directory Service) as a central server with methods for directory managemement. If OPC UA servers register at this service, then clients can browse lists of these servers \cite{opc-vs-mtconnect}.
+
+\subsection{Security} \label{security}
 
 With MTConnect security is treated with lower priority. It is recommended that implementations include encryption of data transport and storage by standard methods such as SSL/TLS for transport and AES of RSA for storing \cite{opc-vs-mtconnect}.
 
 MQTT allows implementers a choice of network, privacy, authentication and authorization technologies. It is on implementer responsibility to include security features as part of the design. In hostile communication environments it is recommended to use methods like TLS and provide mechanisms for authentication of users, authorization of access, integrity and privacy of MQTT Control Packets and application data within \cite{MQTT50}.
-mqtt - encrypted TLS connection
 
-  {
-    \color{red}
-    \url{https://www.hivemq.com/iiot-protocols-opc-ua-mqtt-sparkplug-comparison/} <- praktycznie reklama technologii tej firmy\\
-    Comparison MQTT vs OPC-UA - \url{https://www.muutech.com/en/comparison-mqtt-vs-opc-ua/}\\
-    OPC UA versus MTConnect - \url{https://www.researchgate.net/publication/322835359_OPC_UA_versus_MTConnect_-_English_version}\\
-    A Cyber-Physical Machine Tools Platform using OPC UA and MTConnect - \url{https://www.sciencedirect.com/science/article/abs/pii/S0278612518301110}
-    
-  }
+In OPC UA security is an integral part of the specification, and it is described in part 2 of this specification. Security functions are defined at different levels, as a mandatory part of the protocol. The features include authenticity, authorisation, integrity and confidentiality. As described ealier in \ref{sec-imporovements}, applications are expected to exchange certificates for the identification. Individual data elements can have granular access rights applied to them. Transfer of data is encrypted with SSL/TLS, the WS Secure Conversation, and the particular UA Secure Conversation \cite{opc-vs-mtconnect}.
 
-%- TODO Cross-Platform Capabilities
-%- TODO Expanded security?
-%? TODO IT Integration
-%? TODO Compatibility
-% TODO applications
-%TODO architecture
-% TODO client
-% TODO server
-%TODO specification
 
 \section{Abstraction layers}
 \subsection{Introduction}
