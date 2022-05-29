@@ -25,10 +25,6 @@ The OPC Classic specifications provided definitions for accessing data, alarms, 
 
 Because it relies on the Microsoft Windows platform, OPC Classic has some limitations like security issues or dependency on Windows \cite{whyOPC}.
 
-{  
-\color{red}
-OPC Implementation? - jest to calkiem fajnie opisane w \cite{intrOPC}, ale nie wiem czy dodaæ bo mozliwe ze by³by to zbyt duzy offtop, bo uzywam opc ua.
-}
 \subsection{OPC UA}
 In 2006 OPC Foundation released OPC Unified Architecture (UA) which is an improvement on OPC Classic. It brings together all the different specifications of OPC Classic into a single entry point with DA, A\&E with HDA of both.
 
@@ -182,37 +178,39 @@ MQTT allows implementers a choice of network, privacy, authentication and author
 In OPC UA security is an integral part of the specification, and it is described in part 2 of this specification. Security functions are defined at different levels, as a mandatory part of the protocol. The features include authenticity, authorisation, integrity and confidentiality. As described ealier in \ref{sec-imporovements}, applications are expected to exchange certificates for the identification. Individual data elements can have granular access rights applied to them. Transfer of data is encrypted with SSL/TLS, the WS Secure Conversation, and the particular UA Secure Conversation \cite{opc-vs-mtconnect}.
 
 
-\section{Abstraction layers}
-\subsection{Introduction}
-Systems created currently are constructed using numerous abstraction layers. Each layer is defining an inteface that hides details of implementation for its functionality. Programs that are built on top of each layer can be used and understood using only its inteface, so it's not necessary to know the layer implementation.
-\subsection{Specification}
-Important aspect of an abstraction layer is its specification. A specification should capture the functionality of the implementation as well as the assuptions about other layer context. However, abstraction layers are not commonly specified and verified.
-\subsection{Issues}
 {
-  \color{red}
-  Write something about issues when creating abstraction layers\\
-  
-  sources: \\
-  Deep Specifications and Certified Abstraction Layers \\
-  http://flint.cs.yale.edu/flint/publications/dscal.pdf\\
-  
-  Separation Logic: A Logic for Shared Mutable Data Structures \\
-  https://sci-hub.se/10.1109/LICS.2002.1029817\\
-  https://ieeexplore.ieee.org/document/1029817\\
-  
-  Theories of Programming Languages\\
-  John C. Reynolds\\
-  
-  Clean code\\
-  str 36, 93, 290\\
+\color{red}
+Write something about issues when creating abstraction layers\\
+
+sources: \\
+Deep Specifications and Certified Abstraction Layers \\
+http://flint.cs.yale.edu/flint/publications/dscal.pdf \\
+
+Separation Logic: A Logic for Shared Mutable Data Structures \\
+https://sci-hub.se/10.1109/LICS.2002.1029817\\
+https://ieeexplore.ieee.org/document/1029817\\
+
+Theories of Programming Languages\\
+John C. Reynolds\\
+
+Clean code\\
+str 36, 93, 290\\
 }
 
-\section{C4 model}
+\section{Modeling}
+
+\subsection{Abstraction layers}
+Systems created currently are constructed using numerous abstraction layers. Each layer is defining an inteface that hides details of implementation for its functionality. Programs that are built on top of each layer can be used and understood using only its inteface, so it's not necessary to know the layer implementation.
+
+\subsubsection{Specification}
+Important aspect of an abstraction layer is its specification. A specification should capture the functionality of the implementation as well as the assuptions about other layer context. However, abstraction layers are not commonly specified and verified \cite{Certified-Abstraction}.
+
+\subsection{C4 model}
 The C4 model is a graphical notation technique for representing software system architecture\cite{Richards2020FundamentalsOS, EnriquezReneSalazarAlbertoArchitecture2018}. 
 It is built on a structural decomposition of a system into containers and components, and it depends on existing modeling approaches such as the Unified Modeling Language (UML) or Entity Relation Diagrams (ERD) for a more precise decomposition of the architectural building blocks. 
 It also was developed to address UML's shortcomings and improve its approach \cite{Richards2020FundamentalsOS}.
 
-\subsection{Abstractions}
+\subsubsection{Abstractions in C4}
 The C4 model is an "abstraction-first" approach to diagramming software architecture, based upon abstractions that illustrate how software architects and developers think about and build software \cite{C4Model}.
 
 Model created using C4 is composed of a set of hierarchical diagrams, that can be used to describe software at different levels of detail \cite{C4ModelSimon, C4Model}:
